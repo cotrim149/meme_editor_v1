@@ -24,18 +24,34 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="j7Y-bl-NnC"/>
-                                    <barButtonItem systemItem="camera" id="udH-pO-bnS"/>
+                                    <barButtonItem systemItem="camera" id="udH-pO-bnS">
+                                        <connections>
+                                            <action selector="openCamera:" destination="BYZ-38-t0r" id="GUD-8E-mdj"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="FDe-Ca-MWm"/>
-                                    <barButtonItem title="Album" id="c3y-B1-l84"/>
+                                    <barButtonItem title="Album" id="c3y-B1-l84">
+                                        <connections>
+                                            <action selector="openAlbum:" destination="BYZ-38-t0r" id="tff-Wn-2zE"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="xV3-cY-x7f"/>
                                 </items>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y86-ya-dEg">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="action" id="daZ-Jr-yHB"/>
+                                    <barButtonItem systemItem="action" id="daZ-Jr-yHB">
+                                        <connections>
+                                            <action selector="share:" destination="BYZ-38-t0r" id="yq4-oE-42c"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Lcw-Lz-K7C"/>
-                                    <barButtonItem title="Cancel" id="g4B-zZ-uCa"/>
+                                    <barButtonItem title="Cancel" id="g4B-zZ-uCa">
+                                        <connections>
+                                            <action selector="cancelPhotoEdition:" destination="BYZ-38-t0r" id="UgO-2A-jRV"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -54,6 +70,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="albumButton" destination="c3y-B1-l84" id="V4P-Hg-pM7"/>
+                        <outlet property="cameraButton" destination="udH-pO-bnS" id="V0r-Sz-4ae"/>
+                        <outlet property="cancelPhotoEditionButton" destination="g4B-zZ-uCa" id="Bs2-H4-XvS"/>
+                        <outlet property="memeImage" destination="vCD-Yq-LnF" id="zQU-R6-9B5"/>
+                        <outlet property="shareSocialMediaButton" destination="daZ-Jr-yHB" id="IAh-KM-Xnh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

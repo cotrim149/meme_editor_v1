@@ -10,16 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+	@IBOutlet weak var albumButton: UIBarButtonItem!
+	@IBOutlet weak var cameraButton: UIBarButtonItem!
+	@IBOutlet weak var shareSocialMediaButton: UIBarButtonItem!
+	@IBOutlet weak var cancelPhotoEditionButton: UIBarButtonItem!
+	@IBOutlet weak var memeImage: UIImageView!
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 	}
 
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+	@IBAction func share(_ sender: UIBarButtonItem) {
 	}
-
-
+	@IBAction func cancelPhotoEdition(_ sender: Any) {
+	}
+	@IBAction func openCamera(_ sender: UIBarButtonItem) {
+	}
+	@IBAction func openAlbum(_ sender: UIBarButtonItem) {
+	}
 }
 
