@@ -10,7 +10,7 @@ import UIKit
 
 extension UIAlertController {
 
-	func alert(withTitle title:String?,message:String?,andActions actions:[UIAlertAction], inController controller:UIViewController?) {
+	static func alert(withTitle title:String?,message:String?,andActions actions:[UIAlertAction], inController controller:UIViewController?) {
 		
 		guard let controller = controller else {
 			return

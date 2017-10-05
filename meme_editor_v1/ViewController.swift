@@ -60,6 +60,7 @@ extension ViewController {
 		setupButtons()
 	}
 	@IBAction func openCamera(_ sender: UIBarButtonItem) {
+		openCamera()
 	}
 
 	@IBAction func openAlbum(_ sender: UIBarButtonItem) {
@@ -90,7 +91,8 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
 			picker.cameraCaptureMode = .photo
 			present(picker, animated: true, completion: nil)
 		} else {
-			
+			let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+			UIAlertController.alert(withTitle: "Camera not available", message: "Camera cannot be found.", andActions: [action], inController: self)
 		}
 		
 	}
