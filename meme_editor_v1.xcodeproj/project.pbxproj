@@ -14,6 +14,7 @@
 		9F1869C11F7D0FD4002CBE44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1869BF1F7D0FD4002CBE44 /* LaunchScreen.storyboard */; };
 		9F1869CC1F7D0FD4002CBE44 /* meme_editor_v1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1869CB1F7D0FD4002CBE44 /* meme_editor_v1Tests.swift */; };
 		9F1869D71F7D0FD4002CBE44 /* meme_editor_v1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1869D61F7D0FD4002CBE44 /* meme_editor_v1UITests.swift */; };
+		9F1E49DF1F85DCD4002FC9A6 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1E49DE1F85DCD4002FC9A6 /* UIAlertControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		9F1869D21F7D0FD4002CBE44 /* meme_editor_v1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = meme_editor_v1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F1869D61F7D0FD4002CBE44 /* meme_editor_v1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = meme_editor_v1UITests.swift; sourceTree = "<group>"; };
 		9F1869D81F7D0FD4002CBE44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F1E49DE1F85DCD4002FC9A6 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,8 @@
 		9F1869B51F7D0FD4002CBE44 /* meme_editor_v1 */ = {
 			isa = PBXGroup;
 			children = (
+				9F1E49E11F85DD00002FC9A6 /* New Group */,
+				9F1E49E01F85DCDB002FC9A6 /* Extension */,
 				9F1869B61F7D0FD4002CBE44 /* AppDelegate.swift */,
 				9F1869B81F7D0FD4002CBE44 /* ViewController.swift */,
 				9F1869BA1F7D0FD4002CBE44 /* Main.storyboard */,
@@ -123,6 +127,21 @@
 				9F1869D81F7D0FD4002CBE44 /* Info.plist */,
 			);
 			path = meme_editor_v1UITests;
+			sourceTree = "<group>";
+		};
+		9F1E49E01F85DCDB002FC9A6 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9F1E49DE1F85DCD4002FC9A6 /* UIAlertControllerExtension.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		9F1E49E11F85DD00002FC9A6 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +280,7 @@
 			files = (
 				9F1869B91F7D0FD4002CBE44 /* ViewController.swift in Sources */,
 				9F1869B71F7D0FD4002CBE44 /* AppDelegate.swift in Sources */,
+				9F1E49DF1F85DCD4002FC9A6 /* UIAlertControllerExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
