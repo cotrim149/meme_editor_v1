@@ -44,17 +44,39 @@ class ViewController: UIViewController {
 		} else {
 			cameraButton.isEnabled = false
 		}
-		
 	}
 	
+	func getImageToShare() -> UIImage? {
+		UIGraphicsBeginImageContext(self.memeImage.frame.size)
+		self.memeImage.draw(CGRect(x: 0, y: 0, width: self.memeImage.frame.width, height: self.memeImage.frame.height))
+		
+		let img = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		return img
+	}
+	
+	func share(image:UIImage?) {
+		
+		if let sharedImage = image {
+			let activityViewController = UIActivityViewController(activityItems: [sharedImage], applicationActivities: nil)
+			activityViewController.popoverPresentationController?.sourceView = self.view
+			self.present(activityViewController, animated: true, completion: nil)
+		} else {
+			let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+			UIAlertController.alert(withTitle: "Meme cannot be shared", message: "Meme failed to be rederized.", andActions: [action], inController: self)
+		}
+	}
 }
 
 // MARK: - Button Actions
 extension ViewController {
 
 	@IBAction func share(_ sender: UIBarButtonItem) {
-		
+		let image = getImageToShare()
+		self.share(image: image)
 	}
+	
 	@IBAction func cancelPhotoEdition(_ sender: Any) {
 		self.memeImage.image = nil
 		setupButtons()
