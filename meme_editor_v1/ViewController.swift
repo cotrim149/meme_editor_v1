@@ -15,12 +15,28 @@ class ViewController: UIViewController {
 	@IBOutlet weak var shareSocialMediaButton: UIBarButtonItem!
 	@IBOutlet weak var cancelPhotoEditionButton: UIBarButtonItem!
 	@IBOutlet weak var memeImage: UIImageView!
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+		
 	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		if memeImage.image == nil {
+			shareSocialMediaButton.isEnabled = false
+			cancelPhotoEditionButton.isEnabled = false
+		}
+	}
+	
+	
+}
+
+// MARK: - Button Actions
+extension ViewController {
 
 	@IBAction func share(_ sender: UIBarButtonItem) {
+		
 	}
 	@IBAction func cancelPhotoEdition(_ sender: Any) {
 	}
@@ -29,4 +45,3 @@ class ViewController: UIViewController {
 	@IBAction func openAlbum(_ sender: UIBarButtonItem) {
 	}
 }
-
