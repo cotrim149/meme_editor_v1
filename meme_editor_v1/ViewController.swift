@@ -51,8 +51,13 @@ class ViewController: UIViewController {
 	
 	func getImageToShare() -> UIImage? {
 		UIGraphicsBeginImageContext(self.memeImage.frame.size)
+		
+		
+		
 		self.memeImage.draw(CGRect(x: 0, y: 0, width: self.memeImage.frame.width, height: self.memeImage.frame.height))
 
+		
+		
 		var topTextFieldFrame = self.topTextField.frame
 		topTextFieldFrame.origin.y -= 70
 		self.topTextField.drawText(in: topTextFieldFrame)
