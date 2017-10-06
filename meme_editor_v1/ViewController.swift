@@ -16,18 +16,21 @@ class ViewController: UIViewController {
 	@IBOutlet weak var cancelPhotoEditionButton: UIBarButtonItem!
 	@IBOutlet weak var memeImage: UIImageView!
 
+	@IBOutlet weak var topTextField: UITextField!
+	@IBOutlet weak var bottomTextField: UITextField!
 	var picker:UIImagePickerController?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.picker = UIImagePickerController()
 		self.picker?.delegate = self
+		topTextField.delegate = self
+		bottomTextField.delegate = self
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupButtons()
-		
 	}
 	
 	func setupButtons() {
@@ -49,6 +52,14 @@ class ViewController: UIViewController {
 	func getImageToShare() -> UIImage? {
 		UIGraphicsBeginImageContext(self.memeImage.frame.size)
 		self.memeImage.draw(CGRect(x: 0, y: 0, width: self.memeImage.frame.width, height: self.memeImage.frame.height))
+
+		var topTextFieldFrame = self.topTextField.frame
+		topTextFieldFrame.origin.y -= 70
+		self.topTextField.drawText(in: topTextFieldFrame)
+		
+		let bottomTextFieldFrame = self.bottomTextField.frame
+//		bottomTextFieldFrame.origin.y += 70
+		self.bottomTextField.drawText(in: bottomTextFieldFrame)
 		
 		let img = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
@@ -128,4 +139,13 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
 		self.memeImage.image = chosenImage
 		self.dismiss(animated: true, completion: nil)
 	}
+}
+
+extension ViewController: UITextFieldDelegate {
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
+	}
+	
 }

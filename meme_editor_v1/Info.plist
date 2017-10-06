@@ -45,5 +45,7 @@
 	<string>This app just will use some photos to make memes. Have fun! ;)</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app just want take some photos to make memes. Let&apos;s have fun! \o/</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This aoo just need this access to manage your photo.</string>
 </dict>
 </plist>

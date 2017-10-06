@@ -24,6 +24,9 @@
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" semanticContentAttribute="spatial" translatesAutoresizingMaskIntoConstraints="NO" id="ZKH-2H-XAJ">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="gme-7f-S5m"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="j7Y-bl-NnC"/>
                                     <barButtonItem systemItem="camera" id="udH-pO-bnS">
@@ -56,46 +59,58 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kFu-mH-bd8">
-                                <rect key="frame" x="20" y="114" width="335" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BN2-yj-2l1">
+                                <rect key="frame" x="20" y="97" width="335" height="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                        <color key="value" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hHF-cu-u1w">
-                                <rect key="frame" x="20" y="543" width="335" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8MX-md-AZe">
+                                <rect key="frame" x="20" y="550" width="335" height="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="y86-ya-dEg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1zB-hY-7r4"/>
-                            <constraint firstItem="ZKH-2H-XAJ" firstAttribute="top" secondItem="hHF-cu-u1w" secondAttribute="bottom" constant="50" id="75P-5L-uZf"/>
+                            <constraint firstItem="ZKH-2H-XAJ" firstAttribute="top" secondItem="8MX-md-AZe" secondAttribute="bottom" constant="33" id="24c-55-WJF"/>
                             <constraint firstItem="ZKH-2H-XAJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="EBi-lt-eAH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kFu-mH-bd8" secondAttribute="trailing" constant="20" id="IWK-cX-C5L"/>
-                            <constraint firstItem="kFu-mH-bd8" firstAttribute="top" secondItem="y86-ya-dEg" secondAttribute="bottom" constant="50" id="JdA-zP-fQQ"/>
-                            <constraint firstItem="hHF-cu-u1w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Szs-K9-blX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BN2-yj-2l1" secondAttribute="trailing" constant="20" id="Gpm-a5-5Mp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vCD-Yq-LnF" secondAttribute="trailing" id="V4t-pq-sIL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8MX-md-AZe" secondAttribute="trailing" constant="20" id="Vuy-d2-Gpy"/>
                             <constraint firstItem="ZKH-2H-XAJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Z1d-9C-ds8"/>
                             <constraint firstItem="ZKH-2H-XAJ" firstAttribute="top" secondItem="vCD-Yq-LnF" secondAttribute="bottom" id="aub-Qv-cZb"/>
+                            <constraint firstItem="8MX-md-AZe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="cF3-gW-b5h"/>
                             <constraint firstItem="y86-ya-dEg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ec4-JY-TjU"/>
                             <constraint firstItem="y86-ya-dEg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="i4b-wy-zWx"/>
-                            <constraint firstItem="kFu-mH-bd8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="p8I-L6-tuk"/>
                             <constraint firstItem="ZKH-2H-XAJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rRL-a9-1UZ"/>
                             <constraint firstItem="vCD-Yq-LnF" firstAttribute="top" secondItem="y86-ya-dEg" secondAttribute="bottom" id="swg-CN-f2u"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hHF-cu-u1w" secondAttribute="trailing" constant="20" id="wSB-kJ-oKA"/>
+                            <constraint firstItem="BN2-yj-2l1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="tY9-bK-Tu3"/>
+                            <constraint firstItem="BN2-yj-2l1" firstAttribute="top" secondItem="y86-ya-dEg" secondAttribute="bottom" constant="33" id="uuD-ZW-3cN"/>
                             <constraint firstItem="vCD-Yq-LnF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zbI-Vk-KeW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="albumButton" destination="c3y-B1-l84" id="V4P-Hg-pM7"/>
+                        <outlet property="bottomTextField" destination="8MX-md-AZe" id="8hE-1p-lcJ"/>
                         <outlet property="cameraButton" destination="udH-pO-bnS" id="V0r-Sz-4ae"/>
                         <outlet property="cancelPhotoEditionButton" destination="g4B-zZ-uCa" id="Bs2-H4-XvS"/>
                         <outlet property="memeImage" destination="vCD-Yq-LnF" id="zQU-R6-9B5"/>
                         <outlet property="shareSocialMediaButton" destination="daZ-Jr-yHB" id="IAh-KM-Xnh"/>
+                        <outlet property="topTextField" destination="BN2-yj-2l1" id="Q7w-aa-t6i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
