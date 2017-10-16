@@ -25,7 +25,11 @@ class ViewController: UIViewController {
 		self.picker = UIImagePickerController()
 		self.picker?.delegate = self
 		topTextField.delegate = self
+		topTextField.tag = 1
 		bottomTextField.delegate = self
+		bottomTextField.tag = 2
+		
+		self.setupViewResizerOnKeyboardShown()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -191,6 +195,7 @@ extension ViewController: UITextFieldDelegate {
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
+
 		return true
 	}
 	
