@@ -49,25 +49,57 @@ class ViewController: UIViewController {
 		}
 	}
 	
-	func getImageToShare() -> UIImage? {
-		UIGraphicsBeginImageContext(self.memeImage.frame.size)
+	fileprivate func adjustFontSize() -> CGFloat {
+		let defaultFontSize = CGFloat(40.0)
 		
-		
-		
-		self.memeImage.draw(CGRect(x: 0, y: 0, width: self.memeImage.frame.width, height: self.memeImage.frame.height))
+		guard let imageSize = self.memeImage.image?.size else {
+			return defaultFontSize
+		}
 
+		if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+			return (defaultFontSize*imageSize.height)/UIScreen.main.bounds.height
+		} else {
+			return (defaultFontSize*imageSize.width)/UIScreen.main.bounds.width
+		}
 		
+	}
+	
+	func getImageToShare() -> UIImage? {
 		
-		var topTextFieldFrame = self.topTextField.frame
-		topTextFieldFrame.origin.y -= 70
-		self.topTextField.drawText(in: topTextFieldFrame)
+		guard let imageSize = self.memeImage.image?.size else {
+			return nil
+		}
 		
-		let bottomTextFieldFrame = self.bottomTextField.frame
-//		bottomTextFieldFrame.origin.y += 70
-		self.bottomTextField.drawText(in: bottomTextFieldFrame)
+		UIGraphicsBeginImageContext(imageSize)
+		
+		self.memeImage.image?.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
+
+		// text field setup
+		let textFieldSize = CGSize(width: imageSize.width*0.8, height: imageSize.height/4)
+		let fontSize = adjustFontSize()
+
+		// top text field
+		let topTextFieldPosition = CGPoint(x: imageSize.width/2 - textFieldSize.width/2 , y: imageSize.height/20)
+		let topTextFieldFrame = CGRect(origin: topTextFieldPosition, size: textFieldSize)
+		let newTopTextField = self.topTextField
+		
+		newTopTextField?.font = UIFont.systemFont(ofSize: fontSize)
+		newTopTextField?.adjustsFontSizeToFitWidth = true
+		newTopTextField?.drawText(in: topTextFieldFrame)
+		
+		// bottom text field
+		let bottomTextFieldPosition = CGPoint(x: imageSize.width/2 - textFieldSize.width/2 , y: (imageSize.height/10) * 8)
+		let bottomTextFieldFrame = CGRect(origin: bottomTextFieldPosition, size: textFieldSize)
+
+		let newBottomTextField = self.bottomTextField
+		
+		newBottomTextField?.font = UIFont.systemFont(ofSize: fontSize)
+		newBottomTextField?.adjustsFontSizeToFitWidth = true
+		newBottomTextField?.drawText(in: bottomTextFieldFrame)
 		
 		let img = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
+		
 		
 		return img
 	}
@@ -76,11 +108,16 @@ class ViewController: UIViewController {
 		
 		if let sharedImage = image {
 			let activityViewController = UIActivityViewController(activityItems: [sharedImage], applicationActivities: nil)
+			activityViewController.completionWithItemsHandler = { (type: UIActivityType?, bool: Bool, aray, error) -> Void in
+				self.topTextField.font = UIFont.systemFont(ofSize: 33)
+				self.bottomTextField.font = UIFont.systemFont(ofSize: 33)
+			}
+			
 			activityViewController.popoverPresentationController?.sourceView = self.view
 			self.present(activityViewController, animated: true, completion: nil)
 		} else {
 			let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-			UIAlertController.alert(withTitle: "Meme cannot be shared", message: "Meme failed to be rederized.", andActions: [action], inController: self)
+			UIAlertController.alert(withTitle: "Meme cannot be shared", message: "Meme failed to be renderized.", andActions: [action], inController: self)
 		}
 	}
 }
@@ -89,8 +126,12 @@ class ViewController: UIViewController {
 extension ViewController {
 
 	@IBAction func share(_ sender: UIBarButtonItem) {
-		let image = getImageToShare()
-		self.share(image: image)
+		
+		DispatchQueue.main.async {
+			let image = self.getImageToShare()
+			self.share(image: image)
+		}
+		
 	}
 	
 	@IBAction func cancelPhotoEdition(_ sender: Any) {
