@@ -2,9 +2,7 @@
 //  ViewControllerExtension.swift
 //  meme_editor_v1
 //
-//  Created by Victor de Lima on 16/10/17.
-//  Copyright © 2017 Victor de Lima. All rights reserved.
-//
+// This methods was found in: https://newfivefour.com/swift-ios-xcode-resizing-on-keyboard.html
 
 import UIKit
 

@@ -163,6 +163,8 @@ extension ViewController {
 }
 
 // MARK: - Album and Camera delegate
+// This mark of Album and camera picker was copy from: http://www.oodlestechnologies.com/blogs/Open-Image-Gallery-and-Take-photo-in-Swift , and modified by me to better implement the project requirements
+
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
 	func openAlbum(){
