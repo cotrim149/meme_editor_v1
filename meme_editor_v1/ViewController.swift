@@ -8,6 +8,13 @@
 
 import UIKit
 
+struct Meme {
+	var topTitle: String?
+	var bottomTitle: String?
+	var originalImage: UIImage?
+	var memeImage: UIImage?
+}
+
 class ViewController: UIViewController {
 
 	@IBOutlet weak var albumButton: UIBarButtonItem!
@@ -20,13 +27,16 @@ class ViewController: UIViewController {
 	@IBOutlet weak var bottomTextField: UITextField!
 	var picker:UIImagePickerController?
 	
+	var meme: Meme = Meme()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.picker = UIImagePickerController()
 		self.picker?.delegate = self
 		topTextField.delegate = self
-		topTextField.tag = 1
 		bottomTextField.delegate = self
+
+		topTextField.tag = 1
 		bottomTextField.tag = 2
 		
 		self.setupViewResizerOnKeyboardShown()
@@ -111,6 +121,7 @@ class ViewController: UIViewController {
 	func share(image:UIImage?) {
 		
 		if let sharedImage = image {
+			meme.memeImage = sharedImage
 			let activityViewController = UIActivityViewController(activityItems: [sharedImage], applicationActivities: nil)
 			activityViewController.completionWithItemsHandler = { (type: UIActivityType?, bool: Bool, aray, error) -> Void in
 				self.topTextField.font = UIFont.systemFont(ofSize: 33)
@@ -187,6 +198,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 		let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage
 		self.memeImage.image = chosenImage
+		self.meme.originalImage = chosenImage
 		self.dismiss(animated: true, completion: nil)
 	}
 }
@@ -195,8 +207,14 @@ extension ViewController: UITextFieldDelegate {
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
-
 		return true
 	}
 	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		if textField.tag == 1 {
+			self.meme.topTitle = textField.text
+		} else {
+			self.meme.bottomTitle = textField.text
+		}
+	}
 }
