@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorVC.swift
 //  meme_editor_v1
 //
 //  Created by Victor de Lima on 28/09/17.
@@ -15,7 +15,7 @@ struct Meme {
 	var memeImage: UIImage?
 }
 
-class ViewController: UIViewController {
+class MemeEditorVC: UIViewController {
 
 	@IBOutlet weak var albumButton: UIBarButtonItem!
 	@IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -33,13 +33,29 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		self.picker = UIImagePickerController()
 		self.picker?.delegate = self
-		topTextField.delegate = self
-		bottomTextField.delegate = self
-
-		topTextField.tag = 1
-		bottomTextField.tag = 2
+		
+		customizeTextField(textField: topTextField, defaultText: "TOP", withTag: 1)
+		customizeTextField(textField: bottomTextField, defaultText: "BOTTOM", withTag: 2)
 		
 		self.setupViewResizerOnKeyboardShown()
+	}
+	
+	func customizeTextField(textField: UITextField, defaultText: String, withTag tag: Int) {
+		let fontSize : CGFloat = 40
+		let strokeWidth = -5
+		
+		let memeTextAttributes:[String:Any] = [
+			NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
+			NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
+			NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: fontSize)!,
+			NSAttributedStringKey.strokeWidth.rawValue: strokeWidth
+		]
+
+		textField.defaultTextAttributes = memeTextAttributes
+		textField.text = defaultText
+		textField.textAlignment = .center
+		textField.tag = tag
+		textField.delegate = self
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -70,11 +86,28 @@ class ViewController: UIViewController {
 			return defaultFontSize
 		}
 
-		if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
-			return (defaultFontSize*imageSize.height)/UIScreen.main.bounds.height
+		var gain : CGFloat = 1.0
+		var imageSizeOrientation : CGFloat = 1.0
+		var screenSizeOrientation : CGFloat = 1.0
+		
+		if UIApplication.shared.statusBarOrientation.isPortrait {
+			imageSizeOrientation = imageSize.height
+			screenSizeOrientation = UIScreen.main.bounds.height
+
+			if imageSizeOrientation != screenSizeOrientation {
+				gain = 1.4
+			}
+
 		} else {
-			return (defaultFontSize*imageSize.width)/UIScreen.main.bounds.width
+			imageSizeOrientation = imageSize.width
+			screenSizeOrientation = UIScreen.main.bounds.width
+
+			if imageSizeOrientation != screenSizeOrientation {
+				gain = 1.25
+			}
 		}
+		
+		return ((defaultFontSize*imageSizeOrientation)/screenSizeOrientation)*gain
 		
 	}
 	
@@ -138,7 +171,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - Button Actions
-extension ViewController {
+extension MemeEditorVC {
 
 	@IBAction func share(_ sender: UIBarButtonItem) {
 		
@@ -165,7 +198,7 @@ extension ViewController {
 // MARK: - Album and Camera delegate
 // This mark of Album and camera picker was copy from: http://www.oodlestechnologies.com/blogs/Open-Image-Gallery-and-Take-photo-in-Swift , and modified by me to better implement the project requirements
 
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension MemeEditorVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
 	func openAlbum(){
 		guard let picker = self.picker else {
@@ -205,7 +238,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
 	}
 }
 
-extension ViewController: UITextFieldDelegate {
+extension MemeEditorVC: UITextFieldDelegate {
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
