@@ -132,7 +132,8 @@ class MemeEditorVC: UIViewController {
 		let fontSize = adjustFontSize()
 
 		// top text field
-		let topTextFieldPosition = CGPoint(x: imageSize.width/2 - textFieldSize.width/2 , y: imageSize.height/20)
+		let topTextFieldNumberOfSections : CGFloat = 20
+		let topTextFieldPosition = CGPoint(x: imageSize.width/2 - textFieldSize.width/2 , y: imageSize.height/topTextFieldNumberOfSections)
 		let topTextFieldFrame = CGRect(origin: topTextFieldPosition, size: textFieldSize)
 		let newTopTextField = self.topTextField
 		
@@ -141,7 +142,10 @@ class MemeEditorVC: UIViewController {
 		newTopTextField?.drawText(in: topTextFieldFrame)
 		
 		// bottom text field
-		let bottomTextFieldPosition = CGPoint(x: imageSize.width/2 - textFieldSize.width/2 , y: (imageSize.height/10) * 8)
+		// divide the height image in 10 parts and getting the 8th section of this
+		let bottonTextFieldNumberOfSections : CGFloat = 10
+		let eighthSection : CGFloat = 8
+		let bottomTextFieldPosition = CGPoint(x: imageSize.width/2 - textFieldSize.width/2 , y: (imageSize.height/bottonTextFieldNumberOfSections) * eighthSection)
 		let bottomTextFieldFrame = CGRect(origin: bottomTextFieldPosition, size: textFieldSize)
 
 		let newBottomTextField = self.bottomTextField
