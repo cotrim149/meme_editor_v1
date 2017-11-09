@@ -17,6 +17,11 @@ struct Meme {
 
 class MemeEditorVC: UIViewController {
 
+	enum TextFieldTag: Int {
+		case top = 1
+		case bottom = 2
+	}
+	
 	@IBOutlet weak var albumButton: UIBarButtonItem!
 	@IBOutlet weak var cameraButton: UIBarButtonItem!
 	@IBOutlet weak var shareSocialMediaButton: UIBarButtonItem!
@@ -34,13 +39,13 @@ class MemeEditorVC: UIViewController {
 		self.picker = UIImagePickerController()
 		self.picker?.delegate = self
 		
-		customizeTextField(textField: topTextField, defaultText: "TOP", withTag: 1)
-		customizeTextField(textField: bottomTextField, defaultText: "BOTTOM", withTag: 2)
+		customizeTextField(textField: topTextField, defaultText: "TOP", withTag: .top)
+		customizeTextField(textField: bottomTextField, defaultText: "BOTTOM", withTag: .bottom)
 		
 		self.setupViewResizerOnKeyboardShown()
 	}
 	
-	func customizeTextField(textField: UITextField, defaultText: String, withTag tag: Int) {
+	func customizeTextField(textField: UITextField, defaultText: String, withTag tag: TextFieldTag) {
 		let fontSize : CGFloat = 40
 		let strokeWidth = -5
 		
@@ -52,9 +57,9 @@ class MemeEditorVC: UIViewController {
 		]
 
 		textField.defaultTextAttributes = memeTextAttributes
-		textField.text = defaultText
+		textField.placeholder = defaultText
 		textField.textAlignment = .center
-		textField.tag = tag
+		textField.tag = tag.rawValue
 		textField.delegate = self
 	}
 	
@@ -122,7 +127,8 @@ class MemeEditorVC: UIViewController {
 		self.memeImage.image?.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
 
 		// text field setup
-		let textFieldSize = CGSize(width: imageSize.width*0.8, height: imageSize.height/4)
+		let gain : CGFloat = 0.8
+		let textFieldSize = CGSize(width: imageSize.width*gain, height: imageSize.height/4)
 		let fontSize = adjustFontSize()
 
 		// top text field
@@ -245,11 +251,21 @@ extension MemeEditorVC: UITextFieldDelegate {
 		return true
 	}
 	
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		if textField.tag == TextFieldTag.top.rawValue {
+			bottomTextField.isHidden = true
+		} else {
+			topTextField.isHidden = true
+		}
+	}
+	
 	func textFieldDidEndEditing(_ textField: UITextField) {
-		if textField.tag == 1 {
+		if textField.tag == TextFieldTag.top.rawValue {
 			self.meme.topTitle = textField.text
+			bottomTextField.isHidden = false
 		} else {
 			self.meme.bottomTitle = textField.text
+			topTextField.isHidden = false
 		}
 	}
 }
