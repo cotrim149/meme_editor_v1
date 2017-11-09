@@ -66,6 +66,10 @@ class MemeEditorVC: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		setupButtons()
+		
+		let fontSize = adjustFontSize(toDefaultSize: true)
+		topTextField.font = UIFont.systemFont(ofSize: fontSize)
+		bottomTextField.font = UIFont.systemFont(ofSize: fontSize)
 	}
 	
 	func setupButtons() {
@@ -84,8 +88,13 @@ class MemeEditorVC: UIViewController {
 		}
 	}
 	
-	fileprivate func adjustFontSize() -> CGFloat {
+	fileprivate func adjustFontSize(toDefaultSize:Bool = false) -> CGFloat {
 		let defaultFontSize = CGFloat(40.0)
+		
+		// The best practices said: every "if" has an "else", but in this case the return make the obvious work
+		if toDefaultSize == true {
+			return defaultFontSize
+		}
 		
 		guard let imageSize = self.memeImage.image?.size else {
 			return defaultFontSize
